@@ -1,6 +1,6 @@
 # vue-cli多页面
 
-> A Vue.js project，[demo地址][http://v.lanchenglv.com/demo/vue-cli-multi-page/module/login.html]
+> A Vue.js project，demo地址：http://v.lanchenglv.com/demo/vue-cli-multi-page/module/login.html
 
 
 
@@ -19,4 +19,3 @@ npm run build
 
 ```
 
-http://v.lanchenglv.com/demo/vue-cli-multi-page/module/login.html
