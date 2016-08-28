@@ -68,7 +68,7 @@
 
 import Lib from 'assets/Lib.js'
 
-import Button from 'components/Button'
+import Button from 'components/Button';
 
 export default {
   data() {
