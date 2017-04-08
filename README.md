@@ -1,12 +1,7 @@
----
-title: vue-cli + webpack 多页面实例配置方法
-date: 2016-8-26
-tags: 
--	vuejs
--	多页面
--	webpack
 
----
+## 温馨提示
+本分支仅支持vuejs 1.0！！
+
 ## vue+webpack是否有多页面
 
 目前使用vue来做项目，估计大部分都是单页面（SPA）应用，一个轻型的 MVVM 框架，谁用了MVVM框架，就再也回不去JQ时代了，哈哈。
