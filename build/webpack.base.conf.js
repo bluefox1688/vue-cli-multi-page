@@ -1,112 +1,91 @@
 var path = require('path')
-var config = require('../config')
-var cssLoaders = require('./css-loaders')
-var projectRoot = path.resolve(__dirname, '../')
+var utils = require('./utils')
 var webpack = require('webpack')
+var config = require('../config')
+
 var glob = require('glob');
-var entries = getEntry('./src/module/**/*.js'); // 获得入口js文件
+var entries =  utils.getMultiEntry('./src/'+config.moduleName+'/**/**/*.js'); // 获得入口js文件
 var chunks = Object.keys(entries);
 
-// 将样式提取到单独的css文件中，而不是打包到js文件或使用style标签插入在head标签中
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+console.log(chunks)
 
+var projectRoot = path.resolve(__dirname, '../')
+const vuxLoader = require('vux-loader')
 
-module.exports = {
-  entry: entries,
+var vueLoaderConfig = require('./vue-loader.conf')
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+let webpackConfig = {
+
+  entry:entries,
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath,
-	/* ---- 生成的例子 vendors.61714a310523a3df9869.js --- */
-    //filename: '[name].[hash].js'
-	/* ---- 生成的例子 vendors.js?f3aaf25de220e214f84e --- */
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    extensions: ['.js', '.vue', '.json'],
     alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components'),
-      'vux-components': 'vux/src/components'
+      'components': path.resolve(__dirname, '../src/components')
     }
   },
-  resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
-  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader',
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
-        loader: 'babel',
-        include: projectRoot,
-        exclude: /node_modules/
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
-        test   : /\.css$/,
-        loader : 'style-loader!css-loader'
-    }, 
-    	 {test: /\.less$/, loader: 'style!css!less'},
-      {
-        test: /\.html$/,
-        loader: 'vue-html'
-      },
-      //字体
-    {
-      test: /\.((ttf|eot|woff|svg)(\?t=[0-9]\.[0-9]\.[0-9]))|(ttf|eot|woff|svg)\??.*$/,
-      loader: 'url?limit=10000&name=fonts/[name].[ext]'
-    },
-    {
-        //test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        loader: 'url',
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
         query: {
           limit: 10000,
-          name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[ext]')
         }
-    },
-    {
-  		test: /vux.src.*?js$/,
-  		loader: 'babel'
-	}
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: utils.assetsPath('fonts/[name].[ext]')
+        }
+      }
     ]
   },
-  vue: {
-    loaders: cssLoaders()
-  },
   plugins: [
+	/*
     // 提取公共模块
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors', // 公共模块的名称
       chunks: chunks,  // chunks是需要提取的模块
-      minChunks: chunks.length
-    }),
-    // 配置提取出的样式文件
-    new ExtractTextPlugin('css/[name].css')
+      minChunks: 4 || chunks.length //公共模块被使用的最小次数。比如配置为3，也就是同一个模块只有被3个以外的页面同时引用时才会被提取出来作为common chunks。
+
+    }),*/
+   
   ]
-  
-  
-  
 }
 
-function getEntry(globPath) {
-  var entries = {},
-    basename, tmp, pathname;
 
-  glob.sync(globPath).forEach(function (entry) {
-    basename = path.basename(entry, path.extname(entry));
-    tmp = entry.split('/').splice(-3);
-    pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-    entries[pathname] = entry;
-  });
-  
-  return entries;
-}
+
+module.exports = vuxLoader.merge(webpackConfig, {
+    options: {
+    
+  },	
+  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
+})
