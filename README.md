@@ -12,7 +12,7 @@ github地址：
 https://github.com/bluefox1688/vue-cli-multi-page
 
 *** 此版仅支持vu2.0，如果需要vue1.0多页面脚手架，请访问分支
-https://github.com/bluefox1688/vue-cli-multi-page
+https://github.com/bluefox1688/vue-cli-multi-page/tree/master
 
 ## 2.0的主要功能
 
