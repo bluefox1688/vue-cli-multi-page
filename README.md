@@ -5,6 +5,7 @@
 
 demo地址：
 http://v.lanchenglv.com/demo/vue2-cli-vux2-multe-page/views/home/list.html
+
 github地址：
 https://github.com/bluefox1688/vue-cli-multi-page
 
@@ -143,6 +144,8 @@ Lib.C.appname;  #蓝橙绿
 3、......
 
 ## 结束言
+此vue多页面架手架，并不局限于vux ui 框架，但现在的UI框架都要自己对webpack简单配置下。
+生命在于折腾，理想还是要有的，万一实现了呢。
 有问题随时lessues哈！
 
 ## 文章首发地址：
