@@ -1,5 +1,12 @@
 <template>
 <div id="app">
+	
+	<divider>github 地址 </divider>
+	
+	<div class="font12 pad10">
+		<a class="color888" href="https://github.com/bluefox1688/vue-cli-multi-page" target="_blank">https://github.com/bluefox1688/vue-cli-multi-page</a>
+	</div>
+	
     <div>
     	<divider>vux UI 展示</divider>
 		<group title="vux UI demo">
@@ -103,9 +110,22 @@ export default {
 	line-height:25px;
 }
 
+.weui-cells{
+font-size: 14px!important;	
+}
 
-
-
+/*
+ * less 展示
+ */ 
+.lessTest{
+	.listbox{
+		border-radius: 10px;
+		font-size: 14px;
+	}
+	.boxcontent{
+		padding: 15px;
+	}
+}
 
 
 </style>
