@@ -1,9 +1,9 @@
 ## 前言
-`vue2.0`上线已经有一段时间了，现在`vue2.1`也都已经发布了，是时候来更新基本vue的多页面架手架了。
+`vue2.0`上线已经有一段时间了，现在`vue2.1`也都已经发布了，是时候来更新基于vue的多页面脚手架了。
 
 相信用vue的童鞋，很多一部分在用于spa（单页面）项目，也不排除传统的多页面项目，我们就用vue开发了多页面的webapp，相对于spa开发效率更高，使用单页面或者多页面，最终还是看项目的需求啦。
 
-这一次我们基于`vuejs2+webpack2+vuxui2`(好222的项目)重新发布了全新的vue架手脚，同时还支持二级目录，以解决页面比较多时，便于归类查找的问题。基于webpack2，构建速度高。ajax获取数据，使用`axios`，当然还有其他的优化，咱们先看看demo呗。
+这一次我们基于`vuejs2+webpack2+vuxui2`(好222的项目)重新发布了全新的vue脚手架，同时还支持二级目录，以解决页面比较多时，便于归类查找的问题。基于webpack2，构建速度高。ajax获取数据，使用`axios`，当然还有其他的优化，咱们先看看demo呗。
 
 demo地址：
 http://v.lanchenglv.com/demo/vue2-cli-vux2-multe-page/views/home/list.html
@@ -22,7 +22,7 @@ https://github.com/bluefox1688/vue-cli-multi-page/tree/master
  4. 提取公共模块
  5. 多页面可使用vue-router2路由
  6. 可自定义页面模块名，例如 http:// localhost:8091/`views`/home/list.html，`views`就是我们线上的模块名，1.0版只能固定的
- 7. 支持二级目录，便于归类，1.0版本时仅支持一级目录
+ 7. 支持二级目录，便于归类，1.0版本暂时仅支持一级目录
  8. 模块下静态文件可直接调用
  9. 发送ajax请求，使用`axios`库，简单封装了一个库，为了减少学习成本，封装参数基本与`JQ ajax`一致，如果不需要可直接删除
  10. 整合了vue最流行的UI框架，`vuxui2.x`，`github star` 已接近`8K`了，组件非常全面，并且作者一直有维护，从`0.x`版本我就开始有使用了，具体了解更多，请访问官网 https://vux.li
@@ -141,7 +141,7 @@ Lib.C.appname;  #蓝橙绿
 当然你还可以在Lib做一些程序判断，例如权限判断等。
 
 ## 公共模块
-我们通常会把常用的库都打包公共的模块，`CommonsChunkPlugin` 插件，是一个可选的用于建立一个独立文件(又称作 chunk)的功能，这个文件包括多个入口 chunk 的公共模块。最终合成的文件能够在最开始的时候加载一次，便存起来到缓存中供后续使用。这个带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。
+我们通常会把常用的库都打包成公共模块，`CommonsChunkPlugin` 插件，是一个可选的用于建立一个独立文件(又称作 chunk)的功能，这个文件包括多个入口 chunk 的公共模块。最终合成的文件能够在最开始的时候加载一次，便存起来到缓存中供后续使用。这个带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。
 
 不同的项目，使用到的插件库数量有所不同，我们可以调整`minChunks`以达到公共模块的大小，文件路径为`/build/webpack.prod.conf.js`，cart+F查找`minChunks`参数，`minChunks: 4` 意思代表为至少被4个页面引用了，就打包进入公共模块，具体的使用方法，可以再详细了解`webpack`中文文档。http://www.css88.com/doc/webpack2/plugins/commons-chunk-plugin/
 
@@ -153,11 +153,11 @@ Lib.C.appname;  #蓝橙绿
 3、......
 
 ## 结束言
-此vue多页面架手架，并不局限于vux ui 框架，但现在的UI框架都要自己对webpack简单配置下。
+此vue多页面脚手架，并不局限于vux ui 框架，但现在的UI框架都要自己对webpack简单配置下。
 
 生命在于折腾，理想还是要有的，万一实现了呢。
 
-有问题随时lessues哈！
+有问题随时Issues哈！
 
 ## 文章首发地址：
 http://lanchenglv.com/article/2017/0409/vue2-webpack2-cli-vux2-multe-page.html
