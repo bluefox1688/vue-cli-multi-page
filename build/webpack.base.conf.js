@@ -18,7 +18,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-let webpackConfig = {
+var webpackConfig = {
 
   entry:entries,
   output: {
