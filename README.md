@@ -1,9 +1,13 @@
-## 使用前温馨提醒
+## 使用前注意事项
 
-直接使用 `cnpm`可能会导致依赖不正确。强烈建议给 `npm` 设置 taobao 的 registry。
+1、直接使用 `cnpm`可能会导致依赖不正确。强烈建议给 `npm` 设置 taobao 的 registry。
+
 `npm install --registry=https://registry.npm.taobao.org`
 
-如果你遇到 `$t` 报错问题，先删除 `node_modules`文件夹后再重装依赖。
+2、如果你遇到 `$t` 报错问题，先删除 `node_modules`文件夹后再重装依赖。
+
+3、新建页面，需重新`npm run dev`才可以正常访问。
+
 
 ## 前言
 `vue2.0`上线已经有一段时间了，现在`vue2.1`也都已经发布了，是时候来更新基于vue的多页面脚手架了。
